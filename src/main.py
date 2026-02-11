@@ -1,16 +1,14 @@
 from fastapi import FastAPI, HTTPException, Security
 from fastapi.security.api_key import APIKeyHeader
 
-from core.config import Config
-from core.bedrock_client import BedrockClient as CognitoBedrockClient
-from local.bedrock_client import BedrockClient as LocalBedrockClient
+from src.core.config import Config
+from src.core.bedrock_client import BedrockClient as CognitoBedrockClient
+from src.local.bedrock_client import BedrockClient as LocalBedrockClient
 
-from inference.recommendation import recommend_objective
-from models.recommendation import SimpleObjectiveRequest, SimpleRecommendResponse
+from src.inference.recommendation import recommend_objective
+from src.models.recommendation import SimpleObjectiveRequest, SimpleRecommendResponse
 
 config = Config.load_config()
-
-# ✅ Standard: ENV is lowercase everywhere
 env = (config.get("env") or "dev").strip().lower()
 
 # ✅ Always use Cognito unless local
@@ -64,3 +62,4 @@ async def handle_recommendation(
         return recommend_objective(req, bedrock_client=bedrock_client, model_id=model_id)
     except Exception as e:
         raise HTTPException(status_code=502, detail=str(e))
+
