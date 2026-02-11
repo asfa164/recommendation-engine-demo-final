@@ -4,7 +4,7 @@ import json
 from typing import Any
 
 from src.models.recommendation import SimpleObjectiveRequest, SimpleRecommendResponse
-from inference.utilities import extract_text_from_anthropic_bedrock, safe_json_loads
+from src.inference.utilities import extract_text_from_anthropic_bedrock, safe_json_loads
 
 
 SYSTEM_PROMPT_SIMPLE = """You are a helpful assistant that improves an objective into a clearer, testable defining objective.
