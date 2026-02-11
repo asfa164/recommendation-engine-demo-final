@@ -3,7 +3,7 @@ from __future__ import annotations
 import json
 from typing import Any
 
-from models.recommendation import SimpleObjectiveRequest, SimpleRecommendResponse
+from src.models.recommendation import SimpleObjectiveRequest, SimpleRecommendResponse
 from inference.utilities import extract_text_from_anthropic_bedrock, safe_json_loads
 
 
